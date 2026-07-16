@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Fondo -->
+    <color name="wear_background">#000000</color>
+    <color name="wear_card_background">#1C1C1E</color>
+    <color name="wear_card_background_light">#2C2C2E</color>
+
+    <!-- Texto -->
+    <color name="wear_text_primary">#FFFFFF</color>
+    <color name="wear_text_secondary">#AEAEB2</color>
+    <color name="wear_text_tertiary">#8E8E93</color>
+
+    <!-- Acento -->
+    <color name="wear_accent_blue">#4C8DFF</color>
+    <color name="wear_accent_blue_dark">#2F5FCC</color>
+
+    <!-- Estados -->
+    <color name="wear_status_confirmed">#34C759</color>
+    <color name="wear_status_confirmed_bg">#1E3A2A</color>
+    <color name="wear_status_pending">#FF9F0A</color>
+    <color name="wear_status_pending_bg">#3A2C1A</color>
+    <color name="wear_status_warning">#FFD60A</color>
+    <color name="wear_status_warning_bg">#3A351A</color>
+    <color name="wear_status_info_bg">#1A2A3A</color>
+
+</resources>

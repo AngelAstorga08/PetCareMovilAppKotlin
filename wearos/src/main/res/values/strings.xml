@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">WearOs</string>
+
+    <!-- Pantalla 1: Vista rápida de citas -->
+    <string name="label_proxima_cita">📅 Próxima cita</string>
+    <string name="pet_name_luna">🐾 Luna</string>
+    <string name="cita_fecha_hora">15/07 · 10:00</string>
+    <string name="cita_tipo_consulta">Consulta</string>
+    <string name="estado_confirmada_azul">🔵 Confirmada</string>
+    <string name="btn_ver_todas">Ver todas</string>
+
+    <!-- Pantalla 2: Lista de citas del día -->
+    <string name="label_hoy">📅 HOY</string>
+    <string name="cita_hora_tipo_1">10:00 · Consulta</string>
+    <string name="estado_confirmada_check">✅ Confirmada</string>
+    <string name="pet_name_max">🐶 Max</string>
+    <string name="cita_hora_tipo_2">14:30 · Baño</string>
+    <string name="estado_pendiente">⏳ Pendiente</string>
+    <string name="link_ver_todas">➡️ Ver todas</string>
+
+    <!-- Pantalla 3: Notificaciones -->
+    <string name="label_notificaciones">🔔 Notificaciones</string>
+    <string name="notif_cita_confirmada_titulo">✅ Cita confirmada</string>
+    <string name="notif_cita_confirmada_hora">10:30 AM</string>
+    <string name="notif_recordatorio_titulo">⚠️ Recordatorio</string>
+    <string name="notif_recordatorio_desc">Cita en 2h</string>
+    <string name="link_actualizar">↻ Actualizar</string>
+</resources>

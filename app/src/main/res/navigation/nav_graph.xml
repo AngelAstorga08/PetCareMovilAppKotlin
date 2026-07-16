@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <!-- Pantalla inicial -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.petcaremovilapp.ui.login.LoginFragment"
+        android:label="Login">
+
+        <!-- Acción: Login → Home -->
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <!-- popUpToInclusive=true: el usuario no puede regresar al login con el botón Back -->
+
+    </fragment>
+
+    <!-- Home: menú de navegación de PetCare (antes contenido de activity_main.xml) -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.petcaremovilapp.ui.home.HomeFragment"
+        android:label="Inicio">
+
+        <!-- Acción: Home → Panel de citas (tarjeta "Mis citas") -->
+        <action
+            android:id="@+id/action_home_to_panelCitas"
+            app:destination="@id/panelCitasFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+
+        <!-- Acción: Home → Login (cerrar sesión) -->
+        <action
+            android:id="@+id/action_home_to_login"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <!-- Agendar cita (antes contenido de item_cliente.xml) -->
+    <fragment
+        android:id="@+id/agendarCitaFragment"
+        android:name="com.example.petcaremovilapp.ui.appointment.AgendarCitaFragment"
+        android:label="Agendar cita" />
+
+    <!-- Panel de citas (antes veterinario.xml) -->
+    <fragment
+        android:id="@+id/panelCitasFragment"
+        android:name="com.example.petcaremovilapp.ui.appointment.PanelCitasFragment"
+        android:label="Panel de citas" />
+
+    <!-- Pantalla de clientes (fuera de alcance: dominio genérico desactualizado) -->
+    <fragment
+        android:id="@+id/clientFragment"
+        android:name="com.example.petcaremovilapp.ui.client.ClientFragment"
+        android:label="Clientes" />
+
+</navigation>

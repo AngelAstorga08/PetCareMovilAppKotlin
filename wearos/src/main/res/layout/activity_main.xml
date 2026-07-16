@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    SwipeDismissFrameLayout es el widget que provee androidx.wear:wear para
+    manejar el gesto de "deslizar desde el borde para volver", que es la
+    convención estándar de navegación hacia atrás en Wear OS. Envuelve al
+    NavHostFragment: en MainActivity.kt se registra un callback que hace
+    NavController.popBackStack() cuando se detecta el swipe.
+-->
+<androidx.wear.widget.SwipeDismissFrameLayout
+    android:id="@+id/swipeDismissRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph_wear" />
+
+</androidx.wear.widget.SwipeDismissFrameLayout>

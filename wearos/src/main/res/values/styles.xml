@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Etiqueta superior tipo "PRÓXIMA CITA" / "HOY" -->
+    <style name="Wear.Text.Header" parent="">
+        <item name="android:textColor">@color/wear_text_secondary</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <!-- Nombre de la mascota, título principal -->
+    <style name="Wear.Text.Title" parent="">
+        <item name="android:textColor">@color/wear_text_primary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Fecha / hora -->
+    <style name="Wear.Text.Subtitle" parent="">
+        <item name="android:textColor">@color/wear_text_primary</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Tipo de cita, descripciones -->
+    <style name="Wear.Text.Body" parent="">
+        <item name="android:textColor">@color/wear_text_secondary</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <!-- Texto pequeño dentro de badges -->
+    <style name="Wear.Text.Badge" parent="">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Texto de botón -->
+    <style name="Wear.Text.Button" parent="">
+        <item name="android:textColor">@color/wear_text_primary</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Enlace tipo "Ver todas" / "Actualizar" -->
+    <style name="Wear.Text.Link" parent="">
+        <item name="android:textColor">@color/wear_accent_blue</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

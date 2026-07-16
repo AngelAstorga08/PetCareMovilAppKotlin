@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_wear"
+    app:startDestination="@id/quickAppointmentFragment">
+
+    <!-- Pantalla inicial: próxima cita (screen_quick_appointment.xml) -->
+    <fragment
+        android:id="@+id/quickAppointmentFragment"
+        android:name="com.example.wearos.ui.home.QuickAppointmentFragment"
+        android:label="QuickAppointment"
+        tools:layout="@layout/screen_quick_appointment">
+
+        <action
+            android:id="@+id/action_quickAppointmentFragment_to_appointmentsTodayFragment"
+            app:destination="@id/appointmentsTodayFragment" />
+    </fragment>
+
+    <!-- Citas de hoy (screen_appointments_today.xml) -->
+    <fragment
+        android:id="@+id/appointmentsTodayFragment"
+        android:name="com.example.wearos.ui.appointments.AppointmentsTodayFragment"
+        android:label="AppointmentsToday"
+        tools:layout="@layout/screen_appointments_today">
+
+        <!--
+        TODO: el link "Ver todas" de esta pantalla originalmente apuntaba a un
+        listado completo de citas que todavía no existe como pantalla propia.
+        Mientras tanto se deja apuntando a Notificaciones solo para dejar el
+        patrón de navegación de ejemplo funcionando; reemplazar cuando exista
+        el destino real (p. ej. un panel de citas completo).
+        -->
+        <action
+            android:id="@+id/action_appointmentsTodayFragment_to_notificationsFragment"
+            app:destination="@id/notificationsFragment" />
+    </fragment>
+
+    <!-- Notificaciones (screen_notifications.xml) -->
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.example.wearos.ui.notifications.NotificationsFragment"
+        android:label="Notifications"
+        tools:layout="@layout/screen_notifications" />
+
+</navigation>
