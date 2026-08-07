@@ -19,10 +19,27 @@ class ClientRepository {
         val loggingInterceptor = HttpLoggingInterceptor { message ->
             Log.d("HTTP_LOG", message)
         }
+
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 
         val okHttpClient = OkHttpClient.Builder()
+
+            // Header necesario para Dev Tunnels
+            .addInterceptor { chain ->
+                val request = chain.request()
+                    .newBuilder()
+                    .addHeader(
+                        "X-Tunnel-Skip-AntiPhishing-Page",
+                        "true"
+                    )
+                    .build()
+
+                chain.proceed(request)
+            }
+
+            // Logs HTTP
             .addInterceptor(loggingInterceptor)
+
             .build()
 
         val retrofit = Retrofit.Builder()
