@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.cardview.widget.CardView
 import androidx.navigation.fragment.findNavController
 import com.example.petcaremovilapp.R
+import com.example.petcaremovilapp.data.api.ApiClient
 
 /**
  * Home / menú de navegación de PetCare.
@@ -50,6 +51,7 @@ class HomeFragment : Fragment() {
             // TODO: pantalla de perfil, no existe todavía
         }
         tvLogout.setOnClickListener {
+            ApiClient.session.clear()
             findNavController().navigate(R.id.action_home_to_login)
         }
     }

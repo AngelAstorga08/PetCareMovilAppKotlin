@@ -39,8 +39,12 @@ class LoginFragment : Fragment() {
         val progressBar = view.findViewById<ProgressBar>(R.id.progress_bar)
 
         btnLogin.setOnClickListener {
-            val email = etEmail.text.toString()
+            val email = etEmail.text.toString().trim()
             val password = etPassword.text.toString()
+            if (email.isBlank() || password.isBlank()) {
+                Toast.makeText(requireContext(), "Ingresa correo y contraseña", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             viewModel.login(email, password)
         }
 
@@ -53,7 +57,7 @@ class LoginFragment : Fragment() {
                 is Result.Success -> {
                     progressBar.visibility = View.GONE
                     btnLogin.isEnabled = true
-                    Toast.makeText(requireContext(), "Bienvenido ${result.data.token}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Bienvenido a PetCare", Toast.LENGTH_SHORT).show()
 
                     findNavController().navigate(R.id.action_login_to_home)
                 }

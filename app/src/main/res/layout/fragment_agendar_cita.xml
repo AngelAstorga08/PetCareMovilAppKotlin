@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F7">
+    android:background="#F5F5F7"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,183 +12,162 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- BOTÓN VOLVER -->
         <TextView
             android:id="@+id/tv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="‹ Volver"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="#1A1A2E"
             android:padding="8dp"
-            android:layout_marginBottom="8dp" />
+            android:text="‹ Volver"
+            android:textColor="#1A1A2E"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
-        <!-- TÍTULO -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:text="📅 Agendar cita"
-            android:textSize="22sp"
-            android:textStyle="bold"
             android:textColor="#1A1A2E"
-            android:layout_marginBottom="16dp" />
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
-        <!-- CLÍNICA (1 sola, fija) -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="🏥 Clínica"
-            android:textSize="14sp"
-            android:textStyle="bold"
             android:textColor="#1A1A2E"
-            android:layout_marginBottom="4dp" />
+            android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_clinic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PetCare - Condesa"
-            android:textSize="16sp"
-            android:textColor="#2D3748"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/bg_white_r8"
             android:padding="12dp"
-            android:layout_marginBottom="16dp" />
-
-        <!-- VETERINARIO -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="👨‍⚕️ Veterinario"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="#1A1A2E"
-            android:layout_marginBottom="4dp" />
+            android:text="Cargando clínica..."
+            android:textColor="#2D3748"
+            android:textSize="15sp" />
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="Selecciona veterinario"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="12dp"
+            android:hint="Veterinario">
 
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/act_veterinarian"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- FECHA -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="📅 Fecha"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="#1A1A2E"
-            android:layout_marginBottom="4dp" />
-
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="Selecciona fecha"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="12dp"
+            android:hint="Fecha">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none"
+                android:clickable="true"
                 android:focusable="false"
-                android:clickable="true" />
+                android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- HORA -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🕐 Hora"
-            android:textSize="14sp"
-            android:textStyle="bold"
+            android:layout_marginBottom="6dp"
+            android:text="🕐 Horarios disponibles"
             android:textColor="#1A1A2E"
-            android:layout_marginBottom="4dp" />
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_hours"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="132dp"
+            android:layout_marginBottom="12dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="4"
-            android:layout_marginBottom="16dp" />
-
-        <!-- MASCOTA -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="🐾 Mascota"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="#1A1A2E"
-            android:layout_marginBottom="4dp" />
+            app:spanCount="4" />
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="Nombre de la mascota"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="12dp"
+            android:hint="Mascota">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_pet_name"
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/act_pet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:maxLines="1" />
+                android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- RESULTADO -->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Servicio">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/act_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_service_cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:padding="8dp"
+            android:text="Selecciona un servicio para ver el costo"
+            android:textColor="#5C7A4E"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/tv_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#2D3748"
-            android:visibility="gone"
-            android:padding="12dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/bg_success_r8"
-            android:layout_marginBottom="16dp" />
+            android:padding="12dp"
+            android:textColor="#2D3748"
+            android:visibility="gone" />
 
-        <!-- ERROR -->
         <TextView
             android:id="@+id/tv_error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#DC3545"
-            android:visibility="gone"
-            android:padding="12dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/bg_error_r8"
-            android:layout_marginBottom="16dp" />
+            android:padding="12dp"
+            android:textColor="#B42318"
+            android:visibility="gone" />
 
-        <!-- BOTÓN -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_confirm"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="✅ Confirmar cita"
-            android:textSize="16sp"
+            android:backgroundTint="#5C7A4E"
+            android:text="Confirmar cita"
             android:textAllCaps="false"
-            app:cornerRadius="12dp"
-            android:backgroundTint="#5C7A4E" />
+            android:textSize="16sp"
+            app:cornerRadius="12dp" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone"
-            android:layout_marginTop="16dp" />
-
+            android:layout_marginTop="12dp"
+            android:visibility="gone" />
     </LinearLayout>
 </ScrollView>

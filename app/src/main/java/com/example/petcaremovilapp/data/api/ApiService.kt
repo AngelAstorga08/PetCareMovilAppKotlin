@@ -2,6 +2,13 @@ package com.example.petcaremovilapp.data.api
 
 import com.example.petcaremovilapp.models.dto.ClientResponseDto
 import com.example.petcaremovilapp.models.dto.LoginResponseDto
+import com.example.petcaremovilapp.models.dto.ApiResponse
+import com.example.petcaremovilapp.models.dto.AppointmentDto
+import com.example.petcaremovilapp.models.dto.ClinicDto
+import com.example.petcaremovilapp.models.dto.CreateMyAppointmentRequest
+import com.example.petcaremovilapp.models.dto.PetDto
+import com.example.petcaremovilapp.models.dto.UserProfileDto
+import com.example.petcaremovilapp.models.dto.VeterinarianDto
 import com.example.petcaremovilapp.models.entities.Client
 import com.example.petcaremovilapp.models.entities.User
 import retrofit2.http.*
@@ -14,7 +21,34 @@ interface ApiService {
     // red en este entorno, así que no arriesgué a adivinar un nombre de
     // ruta distinto.
     @POST("/api/v1/auth/login")
-    suspend fun login(@Body user: User): LoginResponseDto
+    suspend fun login(@Body user: User): ApiResponse<LoginResponseDto>
+
+    @GET("/api/v1/Users/perfil")
+    suspend fun getProfile(): ApiResponse<UserProfileDto>
+
+    @GET("/api/v1/Clinics")
+    suspend fun getClinics(): ApiResponse<List<ClinicDto>>
+
+    @GET("/api/v1/Users/veterinarians")
+    suspend fun getVeterinarians(@Query("clinicId") clinicId: String): ApiResponse<List<VeterinarianDto>>
+
+    @GET("/api/v1/Pets/My-Pets")
+    suspend fun getMyPets(): ApiResponse<List<PetDto>>
+
+    @GET("/api/v1/Appointments/available-dates")
+    suspend fun getAvailableDates(@Query("veterinarianId") veterinarianId: String): ApiResponse<List<String>>
+
+    @GET("/api/v1/Appointments/available-slots")
+    suspend fun getAvailableSlots(
+        @Query("veterinarianId") veterinarianId: String,
+        @Query("date") date: String
+    ): ApiResponse<List<String>>
+
+    @POST("/api/v1/Appointments/mias")
+    suspend fun createMyAppointment(@Body request: CreateMyAppointmentRequest): ApiResponse<AppointmentDto>
+
+    @GET("/api/v1/Appointments/mias")
+    suspend fun getMyAppointments(): ApiResponse<List<AppointmentDto>>
 
     @POST("api/Auth/Create/User")
     suspend fun createUser(@Body user: User): User

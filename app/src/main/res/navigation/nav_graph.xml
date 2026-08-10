@@ -55,7 +55,13 @@
     <fragment
         android:id="@+id/panelCitasFragment"
         android:name="com.example.petcaremovilapp.ui.appointment.PanelCitasFragment"
-        android:label="Panel de citas" />
+        android:label="Panel de citas">
+        <action
+            android:id="@+id/action_panelCitas_to_agendarCita"
+            app:destination="@id/agendarCitaFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
 
     <!-- Pantalla de clientes (fuera de alcance: dominio genérico desactualizado) -->
     <fragment

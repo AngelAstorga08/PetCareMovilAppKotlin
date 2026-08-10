@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="appointment_pending">#B26A00</color>
+    <color name="appointment_confirmed">#3F6B32</color>
+    <color name="appointment_attended">#4F46E5</color>
+    <color name="appointment_cancelled">#B42318</color>
+</resources>

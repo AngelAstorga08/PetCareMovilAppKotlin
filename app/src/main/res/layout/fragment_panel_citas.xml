@@ -1,401 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#F5F5F7"
-    android:padding="12dp">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <!-- ===== BOTÓN VOLVER ===== -->
     <TextView
         android:id="@+id/tv_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="‹ Volver"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:textColor="#1A1A2E"
         android:padding="8dp"
-        android:layout_marginBottom="8dp" />
+        android:text="‹ Volver"
+        android:textColor="#1A1A2E"
+        android:textStyle="bold" />
 
-    <!-- ===== TÍTULO ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mis citas"
+            android:textColor="#1A1A2E"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_new_appointment"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="Nueva cita"
+            android:textAllCaps="false"
+            app:cornerRadius="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_white_r8"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/tv_pending_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0\nPendientes"
+            android:textColor="@color/appointment_pending"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_confirmed_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0\nConfirmadas"
+            android:textColor="@color/appointment_confirmed"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_error_r8"
+        android:padding="12dp"
+        android:textColor="#B42318"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Panel de Citas"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#1A1A2E"
-        android:layout_marginBottom="12dp" />
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
-    <!-- ===== ESTADÍSTICAS ===== -->
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        android:background="#FFFFFF"
-        android:padding="12dp"
-        android:layout_marginBottom="12dp">
+        android:gravity="center"
+        android:padding="32dp"
+        android:text="Aún no tienes citas. Agenda la primera."
+        android:textColor="#6B7280"
+        android:visibility="gone" />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#F59E0B" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pendientes"
-                android:textSize="11sp"
-                android:textColor="#6B7280" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#5C7A4E" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Confirmadas"
-                android:textSize="11sp"
-                android:textColor="#6B7280" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#6366F1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Atendidas"
-                android:textSize="11sp"
-                android:textColor="#6B7280" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#EF4444" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Canceladas"
-                android:textSize="11sp"
-                android:textColor="#6B7280" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- ===== FILTROS ===== -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#FFFFFF"
-        android:padding="12dp"
-        android:layout_marginBottom="12dp">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:hint="Buscar cita..."
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:textSize="14sp"
-            android:layout_marginBottom="8dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <Spinner
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="4dp" />
-
-            <Spinner
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp" />
-
-            <Spinner
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:layout_marginStart="4dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- ===== LISTA DE CITAS ===== -->
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_appointments"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:background="#FFFFFF"
-        android:padding="8dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Citas"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="#1A1A2E"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Item 1 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:background="#F9FAFB"
-            android:layout_marginBottom="6dp">
-
-            <TextView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:text="🐶"
-                android:textSize="20sp"
-                android:gravity="center" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Luna"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="#1A1A2E" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Consulta - 15/07/2026 10:00"
-                    android:textSize="12sp"
-                    android:textColor="#6B7280" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Confirmada"
-                android:textSize="11sp"
-                android:textColor="#FFFFFF"
-                android:background="#5C7A4E"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="4dp" />
-        </LinearLayout>
-
-        <!-- Item 2 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:background="#F9FAFB"
-            android:layout_marginBottom="6dp">
-
-            <TextView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:text="🐱"
-                android:textSize="20sp"
-                android:gravity="center" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Misi"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="#1A1A2E" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Vacunacion - 16/07/2026 11:00"
-                    android:textSize="12sp"
-                    android:textColor="#6B7280" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pendiente"
-                android:textSize="11sp"
-                android:textColor="#FFFFFF"
-                android:background="#F59E0B"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="4dp" />
-        </LinearLayout>
-
-        <!-- Item 3 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:background="#F9FAFB"
-            android:layout_marginBottom="6dp">
-
-            <TextView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:text="🐾"
-                android:textSize="20sp"
-                android:gravity="center" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nube"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="#1A1A2E" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Bano - 17/07/2026 09:00"
-                    android:textSize="12sp"
-                    android:textColor="#6B7280" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cancelada"
-                android:textSize="11sp"
-                android:textColor="#FFFFFF"
-                android:background="#EF4444"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="4dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- ===== PAGINACIÓN ===== -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="#FFFFFF"
-        android:padding="12dp"
-        android:layout_marginTop="8dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Mostrando 1-3 de 3 citas"
-            android:textSize="12sp"
-            android:textColor="#6B7280" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:text="‹"
-                android:gravity="center"
-                android:textSize="16sp"
-                android:background="#F3F4F6"
-                android:textColor="#6B7280" />
-
-            <TextView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:text="1"
-                android:gravity="center"
-                android:textSize="14sp"
-                android:background="#1A1A2E"
-                android:textColor="#FFFFFF"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp" />
-
-            <TextView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:text="›"
-                android:gravity="center"
-                android:textSize="16sp"
-                android:background="#F3F4F6"
-                android:textColor="#6B7280" />
-        </LinearLayout>
-    </LinearLayout>
+        android:clipToPadding="false"
+        android:paddingTop="4dp"
+        android:paddingBottom="12dp" />
 </LinearLayout>

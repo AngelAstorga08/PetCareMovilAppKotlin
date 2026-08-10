@@ -1,62 +1,35 @@
 package com.example.petcaremovilapp.data.repository
 
 import com.example.petcaremovilapp.data.api.ApiService
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import com.example.petcaremovilapp.models.dto.LoginResponseDto
 import com.example.petcaremovilapp.models.dto.Result
 import com.example.petcaremovilapp.models.entities.User
-import okhttp3.logging.HttpLoggingInterceptor
-import okhttp3.OkHttpClient
-import android.util.Log
-import com.example.petcaremovilapp.constants.Constants.BASE_URL
+import com.example.petcaremovilapp.data.api.ApiClient
 
 class LoginRepository {
 
-    private val apiService: ApiService
-
-    init {
-        val loggingInterceptor = HttpLoggingInterceptor { message ->
-            Log.d("HTTP_LOG", message)
-        }
-
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-
-        val okHttpClient = OkHttpClient.Builder()
-
-            // Header necesario para Dev Tunnels
-            .addInterceptor { chain ->
-                val request = chain.request()
-                    .newBuilder()
-                    .addHeader(
-                        "X-Tunnel-Skip-AntiPhishing-Page",
-                        "true"
-                    )
-                    .build()
-
-                chain.proceed(request)
-            }
-
-            // Logs HTTP
-            .addInterceptor(loggingInterceptor)
-
-            .build()
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        apiService = retrofit.create(ApiService::class.java)
-    }
+    private val apiService: ApiService = ApiClient.service
     // Login (antes loginUser(userName, password); renombrado a login(email, password)
     // para reflejar el campo real del formulario)
     suspend fun login(email: String, password: String): Result<LoginResponseDto> =
         try {
             val user = User(email = email, password = password)
             val response = apiService.login(user)
-            Result.Success(response)
+            val login = response.data
+            if (!response.success || login == null) {
+                Result.Error(response.message)
+            } else {
+                ApiClient.session.saveToken(login.token)
+                val profileResponse = apiService.getProfile()
+                val profile = profileResponse.data
+                if (!profileResponse.success || profile == null) {
+                    ApiClient.session.clear()
+                    Result.Error(profileResponse.message)
+                } else {
+                    ApiClient.session.saveProfile(profile.id_user, profile.name, profile.id_role)
+                    Result.Success(login)
+                }
+            }
         } catch (e: Exception) {
             Result.Error(e.message ?: "Error desconocido en login")
         }
