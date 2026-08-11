@@ -23,7 +23,9 @@ data class PetDto(
     val breed: String,
     val species: String?,
     val weight: Double,
-    val age: Int
+    val age: Int,
+    val user_name: String? = null,
+    val id_user: String? = null
 )
 
 data class AppointmentDto(
@@ -48,7 +50,10 @@ data class UserProfileDto(
     val id_user: String,
     val name: String,
     val email: String,
-    val id_role: Int
+    val id_role: Int,
+    val phone: String? = null,
+    val schedule: String? = null,
+    val id_clinic: String? = null
 )
 
 data class CreateMyAppointmentRequest(
@@ -57,6 +62,30 @@ data class CreateMyAppointmentRequest(
     val id_veterinarian: String,
     val appointment_date: String,
     val service: String
+)
+
+data class ChangeStatusRequest(val status: String)
+data class RegisterRequest(
+    val name: String,
+    val email: String,
+    val password: String,
+    val phone: String?,
+    val id_role: Int = 3,
+    val id_clinic: String? = null,
+    val schedule: String? = null
+)
+data class UpdateProfileRequest(
+    val name: String,
+    val email: String,
+    val password: String = "",
+    val phone: String?
+)
+data class PetRequest(
+    val name: String,
+    val breed: String,
+    val species: String?,
+    val weight: Double,
+    val age: Int
 )
 
 data class ServiceOption(val name: String, val price: Int) {

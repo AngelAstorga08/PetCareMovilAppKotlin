@@ -162,13 +162,39 @@ class AppointmentListViewModel : ViewModel() {
     val loading: LiveData<Boolean> = _loading
     private val _error = MutableLiveData<String?>(null)
     val error: LiveData<String?> = _error
+    private val _message = MutableLiveData<String?>(null)
+    val message: LiveData<String?> = _message
+    private var currentRole = 3
 
-    fun refresh() {
+    fun refresh(roleId: Int = currentRole) {
+        currentRole = roleId
         viewModelScope.launch {
             _loading.value = true
             _error.value = null
-            runCatching { repository.getMine() }
-                .onSuccess { _appointments.value = it.sortedByDescending { item -> item.date } }
+            runCatching { repository.getForRole(roleId) }
+                .onSuccess { values ->
+                    _appointments.value = values
+                        .filter { roleId != 2 || it.status.equals("pendiente", true) }
+                        .sortedBy { it.date }
+                }
+                .onFailure { _error.value = it.userMessage() }
+            _loading.value = false
+        }
+    }
+
+    fun cancel(id: String) = mutate("Cita cancelada") { repository.cancel(id) }
+
+    fun changeStatus(id: String, status: String) =
+        mutate("Estado actualizado") { repository.changeStatus(id, status) }
+
+    fun consumeMessage() { _message.value = null }
+
+    private fun mutate(successMessage: String, call: suspend () -> AppointmentDto) {
+        viewModelScope.launch {
+            _loading.value = true
+            _error.value = null
+            runCatching { call() }
+                .onSuccess { _message.value = successMessage; refresh(currentRole) }
                 .onFailure { _error.value = it.userMessage() }
             _loading.value = false
         }

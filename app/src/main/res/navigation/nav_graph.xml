@@ -19,6 +19,7 @@
             app:exitAnim="@anim/slide_out_left"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+        <action android:id="@+id/action_login_to_register" app:destination="@id/registerFragment" />
         <!-- popUpToInclusive=true: el usuario no puede regresar al login con el botón Back -->
 
     </fragment>
@@ -42,6 +43,8 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
+        <action android:id="@+id/action_home_to_pets" app:destination="@id/petsFragment" />
+        <action android:id="@+id/action_home_to_profile" app:destination="@id/profileFragment" />
 
     </fragment>
 
@@ -50,6 +53,9 @@
         android:id="@+id/agendarCitaFragment"
         android:name="com.example.petcaremovilapp.ui.appointment.AgendarCitaFragment"
         android:label="Agendar cita" />
+
+    <fragment android:id="@+id/petsFragment" android:name="com.example.petcaremovilapp.ui.pet.PetsFragment" android:label="Mascotas" />
+    <fragment android:id="@+id/profileFragment" android:name="com.example.petcaremovilapp.ui.profile.ProfileFragment" android:label="Perfil" />
 
     <!-- Panel de citas (antes veterinario.xml) -->
     <fragment
@@ -62,6 +68,8 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left" />
     </fragment>
+
+    <fragment android:id="@+id/registerFragment" android:name="com.example.petcaremovilapp.ui.login.RegisterFragment" android:label="Registro" />
 
     <!-- Pantalla de clientes (fuera de alcance: dominio genérico desactualizado) -->
     <fragment

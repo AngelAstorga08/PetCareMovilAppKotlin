@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+    <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Nombre" />
+    <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_species" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Especie" />
+    <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_breed" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Raza" />
+    <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_weight" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Peso (kg)" android:inputType="numberDecimal" />
+    <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_age" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Edad" android:inputType="number" />
+</LinearLayout>

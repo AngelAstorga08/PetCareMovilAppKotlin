@@ -7,6 +7,7 @@ import com.example.petcaremovilapp.models.dto.ClinicDto
 import com.example.petcaremovilapp.models.dto.CreateMyAppointmentRequest
 import com.example.petcaremovilapp.models.dto.PetDto
 import com.example.petcaremovilapp.models.dto.VeterinarianDto
+import com.example.petcaremovilapp.models.dto.ChangeStatusRequest
 import com.google.gson.JsonParser
 import retrofit2.HttpException
 
@@ -33,6 +34,17 @@ class AppointmentRepository {
         request { api.createMyAppointment(request) }
 
     suspend fun getMine(): List<AppointmentDto> = request { api.getMyAppointments() }
+
+    suspend fun getForRole(roleId: Int): List<AppointmentDto> = when (roleId) {
+        1 -> request { api.getClinicAppointments() }
+        2 -> request { api.getVeterinarianAppointments() }
+        else -> getMine()
+    }
+
+    suspend fun cancel(id: String): AppointmentDto = request { api.cancelMyAppointment(id) }
+
+    suspend fun changeStatus(id: String, status: String): AppointmentDto =
+        request { api.changeAppointmentStatus(id, ChangeStatusRequest(status)) }
 
     private suspend fun <T> request(call: suspend () -> ApiResponse<T>): T = try {
         unwrap(call())

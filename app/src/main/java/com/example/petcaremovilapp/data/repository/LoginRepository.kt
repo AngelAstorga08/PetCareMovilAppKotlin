@@ -5,6 +5,7 @@ import com.example.petcaremovilapp.models.dto.LoginResponseDto
 import com.example.petcaremovilapp.models.dto.Result
 import com.example.petcaremovilapp.models.entities.User
 import com.example.petcaremovilapp.data.api.ApiClient
+import com.example.petcaremovilapp.models.dto.RegisterRequest
 
 class LoginRepository {
 
@@ -35,11 +36,11 @@ class LoginRepository {
         }
 
     // Register
-    suspend fun registerUser(email: String, password: String): Result<User> =
+    suspend fun register(name: String, email: String, password: String, phone: String?): Result<String> =
         try {
-            val user = User(email = email, password = password)
-            val response = apiService.createUser(user)
-            Result.Success(response)
+            val response = apiService.register(RegisterRequest(name, email, password, phone))
+            if (!response.success || response.data == null) Result.Error(response.message)
+            else Result.Success(response.data)
         } catch (e: Exception) {
             Result.Error(e.message ?: "Error desconocido en el registro")
         }

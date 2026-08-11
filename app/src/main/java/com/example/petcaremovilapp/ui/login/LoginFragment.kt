@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -37,6 +38,9 @@ class LoginFragment : Fragment() {
         val etPassword = view.findViewById<EditText>(R.id.et_password)
         val btnLogin = view.findViewById<Button>(R.id.btn_login)
         val progressBar = view.findViewById<ProgressBar>(R.id.progress_bar)
+        view.findViewById<TextView>(R.id.tv_register).setOnClickListener {
+            findNavController().navigate(R.id.action_login_to_register)
+        }
 
         btnLogin.setOnClickListener {
             val email = etEmail.text.toString().trim()

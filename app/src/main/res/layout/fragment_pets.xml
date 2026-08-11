@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="16dp" android:background="#F5F5F7">
+    <TextView android:id="@+id/tv_back" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="&#8249; Volver" android:padding="8dp" android:textStyle="bold" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Mis mascotas" android:textSize="24sp" android:textStyle="bold" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn_new_pet" android:layout_width="wrap_content" android:layout_height="48dp" android:text="Nueva" android:textAllCaps="false" />
+    </LinearLayout>
+    <TextView android:id="@+id/tv_error" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#B42318" android:visibility="gone" android:padding="10dp" />
+    <ProgressBar android:id="@+id/progress_bar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:visibility="gone" />
+    <TextView android:id="@+id/tv_empty" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Aun no tienes mascotas registradas." android:textColor="#6B7280" android:gravity="center" android:padding="32dp" android:visibility="gone" />
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/rv_pets" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:paddingTop="12dp" />
+</LinearLayout>

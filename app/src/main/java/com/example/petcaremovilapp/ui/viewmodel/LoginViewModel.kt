@@ -16,8 +16,8 @@ class LoginViewModel : ViewModel() {
 
     private val _loginResult = MutableLiveData<Result<LoginResponseDto>>()
     val loginResult: LiveData<Result<LoginResponseDto>> = _loginResult
-    private val _registerResult = MutableLiveData<Result<User>>()
-    val registerResult: LiveData<Result<User>> = _registerResult
+    private val _registerResult = MutableLiveData<Result<String>>()
+    val registerResult: LiveData<Result<String>> = _registerResult
 
     // Renombrado de loginUser(userName, password) a login(email, password)
     fun login(email: String, password: String) {
@@ -26,10 +26,10 @@ class LoginViewModel : ViewModel() {
             _loginResult.value = repository.login(email, password)
         }
     }
-    fun registerUser(email: String, password: String) {
+    fun register(name: String, email: String, password: String, phone: String?) {
         _registerResult.value = Result.Loading
         viewModelScope.launch {
-            _registerResult.value = repository.registerUser(email, password)
+            _registerResult.value = repository.register(name, email, password, phone)
         }
     }
 }

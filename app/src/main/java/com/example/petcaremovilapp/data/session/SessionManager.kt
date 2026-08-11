@@ -11,6 +11,9 @@ class SessionManager(context: Context) {
     val roleId: Int
         get() = preferences.getInt(KEY_ROLE, 0)
 
+    val userName: String
+        get() = preferences.getString(KEY_USER_NAME, "") ?: ""
+
     fun saveToken(token: String) {
         preferences.edit().putString(KEY_TOKEN, token).apply()
     }
@@ -21,6 +24,10 @@ class SessionManager(context: Context) {
             .putString(KEY_USER_NAME, name)
             .putInt(KEY_ROLE, roleId)
             .apply()
+    }
+
+    fun updateUserName(name: String) {
+        preferences.edit().putString(KEY_USER_NAME, name).apply()
     }
 
     fun clear() {

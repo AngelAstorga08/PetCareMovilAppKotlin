@@ -9,6 +9,10 @@ import com.example.petcaremovilapp.models.dto.CreateMyAppointmentRequest
 import com.example.petcaremovilapp.models.dto.PetDto
 import com.example.petcaremovilapp.models.dto.UserProfileDto
 import com.example.petcaremovilapp.models.dto.VeterinarianDto
+import com.example.petcaremovilapp.models.dto.ChangeStatusRequest
+import com.example.petcaremovilapp.models.dto.PetRequest
+import com.example.petcaremovilapp.models.dto.RegisterRequest
+import com.example.petcaremovilapp.models.dto.UpdateProfileRequest
 import com.example.petcaremovilapp.models.entities.Client
 import com.example.petcaremovilapp.models.entities.User
 import retrofit2.http.*
@@ -23,8 +27,14 @@ interface ApiService {
     @POST("/api/v1/auth/login")
     suspend fun login(@Body user: User): ApiResponse<LoginResponseDto>
 
+    @POST("/api/v1/auth/register")
+    suspend fun register(@Body request: RegisterRequest): ApiResponse<String>
+
     @GET("/api/v1/Users/perfil")
     suspend fun getProfile(): ApiResponse<UserProfileDto>
+
+    @PUT("/api/v1/Users/perfil")
+    suspend fun updateProfile(@Body request: UpdateProfileRequest): ApiResponse<UserProfileDto>
 
     @GET("/api/v1/Clinics")
     suspend fun getClinics(): ApiResponse<List<ClinicDto>>
@@ -49,6 +59,27 @@ interface ApiService {
 
     @GET("/api/v1/Appointments/mias")
     suspend fun getMyAppointments(): ApiResponse<List<AppointmentDto>>
+
+    @GET("/api/v1/Appointments/my-patients")
+    suspend fun getVeterinarianAppointments(): ApiResponse<List<AppointmentDto>>
+
+    @GET("/api/v1/Appointments/mi-clinica")
+    suspend fun getClinicAppointments(): ApiResponse<List<AppointmentDto>>
+
+    @PATCH("/api/v1/Appointments/cancelar/{id}")
+    suspend fun cancelMyAppointment(@Path("id") id: String): ApiResponse<AppointmentDto>
+
+    @PATCH("/api/v1/Appointments/{id}/status")
+    suspend fun changeAppointmentStatus(@Path("id") id: String, @Body request: ChangeStatusRequest): ApiResponse<AppointmentDto>
+
+    @POST("/api/v1/Pets")
+    suspend fun createPet(@Body request: PetRequest): ApiResponse<PetDto>
+
+    @PUT("/api/v1/Pets/{id}")
+    suspend fun updatePet(@Path("id") id: String, @Body request: PetRequest): ApiResponse<PetDto>
+
+    @DELETE("/api/v1/Pets/{id}")
+    suspend fun deletePet(@Path("id") id: String): ApiResponse<String>
 
     @POST("api/Auth/Create/User")
     suspend fun createUser(@Body user: User): User
